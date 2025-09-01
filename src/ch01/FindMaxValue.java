@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class FindMaxValue {
     // 최대값의 인덱스와 값 출력하기
-    // 입력값 72, 60, 83, 47, 89, 95
+    // 입력값 72, 60, 83, 47, 89, 95,
 
     public static Map<String, Integer> findMaximun(int[] num) {
         int max = num[0];
