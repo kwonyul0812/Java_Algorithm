@@ -2,17 +2,21 @@ package ch02;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class DataFind {
     // TODO : Arrays, Collecter 클래스 함수 무엇이 있는지 확인하고, lambda, Stream 공부하기.
+
 
     private int[] datas;
 
     // 임의의 갯수의 데이터를 생성 (size, bound)
     public void generatedRandomData(int size, int bound) {
         Random rand = new Random();
+
         datas = IntStream.range(0, size)
                 .map(i -> rand.nextInt(bound))
                 .toArray();
