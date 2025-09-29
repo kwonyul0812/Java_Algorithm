@@ -24,5 +24,12 @@ public class GraphMain {
         System.out.println(g);
 
         g.dfs(); // 깊이우선탐색 , 스택으로 구현
+
+        for (GraphNode node : nodeList) {
+            node.setVisited(false);
+        }
+
+        System.out.println();
+        g.bfs();
     }
 }

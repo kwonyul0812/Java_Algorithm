@@ -1,6 +1,8 @@
 package ch04;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class Graph {
@@ -78,5 +80,31 @@ public class Graph {
             }
         }
         return neighbors;
+    }
+
+    public void bfs() {
+        for (GraphNode node : nodeList) {
+            if(!node.isVisited()) {
+                bfsVisit(node);
+            }
+        }
+    }
+
+    private void bfsVisit(GraphNode node) {
+        Queue<GraphNode> queue = new LinkedList<>();
+        queue.add(node);
+
+        while(!queue.isEmpty()) {
+            GraphNode currentNode = queue.remove();
+            System.out.print(currentNode.getName() + " ");
+            currentNode.setVisited(true);
+            ArrayList<GraphNode> neighbors = getNeighbors(currentNode);
+            for (GraphNode neighbor : neighbors) {
+                if (!neighbor.isVisited()) {
+                    queue.add(neighbor);
+                    neighbor.setVisited(true);
+                }
+            }
+        }
     }
 }
