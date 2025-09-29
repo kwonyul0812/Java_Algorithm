@@ -2,7 +2,7 @@ package ch04;
 
 import java.util.ArrayList;
 
-public class GraphMain {
+public class TopologicalSortMain {
     public static void main(String[] args) {
         ArrayList<GraphNode> nodeList = new ArrayList<>();
         nodeList.add(new GraphNode("1", 0));
@@ -10,28 +10,24 @@ public class GraphMain {
         nodeList.add(new GraphNode("3", 2));
         nodeList.add(new GraphNode("4", 3));
         nodeList.add(new GraphNode("5", 4));
+        nodeList.add(new GraphNode("6", 5));
+        nodeList.add(new GraphNode("7", 6));
 
         Graph g = new Graph(nodeList);
-        System.out.println(g);
+
         g.addDirectedEdge('1', '2');
         g.addDirectedEdge('1', '4');
-        g.addDirectedEdge('1', '5');
-        g.addDirectedEdge('2', '3');
         g.addDirectedEdge('2', '4');
+        g.addDirectedEdge('2', '6');
         g.addDirectedEdge('3', '4');
-        g.addDirectedEdge('4', '5');
+        g.addDirectedEdge('3', '5');
+        g.addDirectedEdge('4', '6');
+        g.addDirectedEdge('5', '6');
+        g.addDirectedEdge('5', '7');
+        g.addDirectedEdge('6', '7');
 
         System.out.println(g);
 
-        g.dfs(); // 깊이우선탐색 , 스택으로 구현
-
-        for (GraphNode node : nodeList) {
-            node.setVisited(false);
-        }
-        System.out.println();
-
-        g.bfs();
-
-
+        g.topologicalSort();
     }
 }

@@ -84,7 +84,7 @@ public class Graph {
 
     public void bfs() {
         for (GraphNode node : nodeList) {
-            if(!node.isVisited()) {
+            if (!node.isVisited()) {
                 bfsVisit(node);
             }
         }
@@ -94,7 +94,7 @@ public class Graph {
         Queue<GraphNode> queue = new LinkedList<>();
         queue.add(node);
 
-        while(!queue.isEmpty()) {
+        while (!queue.isEmpty()) {
             GraphNode currentNode = queue.remove();
             System.out.print(currentNode.getName() + " ");
             currentNode.setVisited(true);
@@ -106,5 +106,28 @@ public class Graph {
                 }
             }
         }
+    }
+
+    public void topologicalSort() {
+        Stack<GraphNode> stack = new Stack<>();
+        for (GraphNode node : nodeList) {
+            if (!node.isVisited()) {
+                topologicalVisit(node, stack);
+            }
+        }
+        while (!stack.isEmpty()) {
+            System.out.print(stack.pop().getName() + " ");
+        }
+    }
+
+    private void topologicalVisit(GraphNode node, Stack<GraphNode> stack) {
+        ArrayList<GraphNode> neighbors = getNeighbors(node);
+        for (GraphNode neighbor : neighbors) {
+            if (!neighbor.isVisited()) {
+                topologicalVisit(neighbor, stack);
+            }
+        }
+        node.setVisited(true);
+        stack.push(node);
     }
 }
